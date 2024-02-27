@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main() {
+    int k = 3;
+    char input[1000], cipher[1000];
+    printf("Enter input string: ");
+    scanf("%s", input); 
+    printf("Encryption is : ");
+    for (int i = 0; i < strlen(input); i++) {
+        if (islower(input[i])) {
+            cipher[i] = 'a' + (input[i] - 'a' + k) % 26;
+        } else if (isupper(input[i])) {
+            cipher[i] = 'A' + (input[i] - 'A' + k) % 26;
+        } else {
+            cipher[i] = input[i];
+        }
+        printf("%c", cipher[i]);
+    }
+    printf("\nDecryption is : ");
+    for (int i = 0; i < strlen(input); i++) {
+        if (islower(cipher[i])) {
+            input[i] = 'a' + (cipher[i] - 'a' - k + 26) % 26;
+        } else if (isupper(cipher[i])) {
+            input[i] = 'A' + (cipher[i] - 'A' - k + 26) % 26;
+        } else {
+            input[i] = cipher[i];
+        }
+        printf("%c", input[i]);
+    }
+    printf("\n");
+    return 0;
+}
+
+
+output:
+Enter the String : apple
+	Encryption is : dssoh
+	Decryption is : apple
