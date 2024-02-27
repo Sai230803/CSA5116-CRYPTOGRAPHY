@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+void encrypt(char message[], int key) {
+    int len = strlen(message);
+    int row = (len + key - 1) / key;
+    char encry[100][100];
+    int m = 0;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < key; j++) {
+            if (m < len) {
+                encry[i][j] = message[m++];
+            } else {
+                encry[i][j] = 'X';
+            }
+        }
+    }
+    for (int j = 0; j < key; j++) {
+        for (int i = 0; i < row; i++) {
+            if (encry[i][j] != 'X') {
+                printf("%c", encry[i][j]);
+            }
+        }
+    }
+    printf("\n");
+}
+int main() {
+    char message[100];
+    int key;
+    printf("Enter the message to encrypt: ");
+    scanf("%s", message);
+    printf("Enter the key: ");
+    scanf("%d", &key);
+    printf("Encrypted message is:\n");
+    encrypt(message, key);
+    return 0;
+}
+
+output:
+Enter the message to encrypt: cprogramming
+Enter the key: 5
+Encrypted message is:
+crnpagrmomgi
