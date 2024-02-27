@@ -1,0 +1,27 @@
+#include <stdio.h>
+void encrypt(int key[3][3], char message[]) {
+    int cipher[3] = {0};
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cipher[i] += (key[i][j] * (message[j] - 'A')) % 26;
+        }
+        cipher[i] %= 26;
+        printf("%c", cipher[i] + 'A');
+    }
+    printf("\n");
+}
+int main() {
+    int key[3][3] = {
+        {1, 2, 4},
+        {3, 1, 2},
+        {4, 4, 3}
+    };
+    char message[] = "ACT"; 
+    printf("Encrypted message: ");
+    encrypt(key, message);
+    return 0;
+}
+
+
+output:
+Encrypted message: CON
